@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { Red_Hat_Display } from "next/font/google";
 import "./globals.css";
+import LenisSmoothScroll from "@/components/Lenis";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Google Font — Red Hat Display
+const redHatDisplay = Red_Hat_Display({
   subsets: ["latin"],
+  variable: "--font-red-hat",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// Local Serif Font — IvyMode
+const ivyMode = localFont({
+  src: "./fonts/IvyMode-Regular.woff2",
+  variable: "--font-ivy",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,14 +25,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
+        className={`
+          ${redHatDisplay.variable}
+          ${ivyMode.variable}
+          antialiased
+        `}
       >
+        <LenisSmoothScroll />
         {children}
       </body>
     </html>
