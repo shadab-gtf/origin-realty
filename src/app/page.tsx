@@ -6,7 +6,7 @@ import About from "@/components/Sections/About";
 import BreathingSpaces from "@/components/Sections/BreathingSpaces";
 import Vision from "@/components/Sections/Vision";
 import Purpose from "@/components/Sections/Purpose";
-import VideoSection from "@/components/Sections/VideoSection";
+// import VideoSection from "@/components/Sections/VideoSection";
 import ScrollVideoCanvas from "@/components/UI/ScrollVideoCanvas";
 import Footer from "@/components/Footer/Footer";
 import Beyond from "@/components/Sections/Beyond";
