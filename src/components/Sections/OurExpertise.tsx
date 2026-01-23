@@ -90,7 +90,8 @@ export default function OurExpertise() {
     <section ref={sectionRef} className="bg-white px-6 py-24">
       {/* HEADER */}
       <div className="mx-auto max-w-[1082px] w-full text-center">
-        <p className="text-sm font-bold text-[#CEB58D]">THE ORIGEN ADVANTAGE</p>
+        <p className="text-sm font-bold text-[#9E7C3A]">THE ORIGEN ADVANTAGE</p>
+
         <h2 className="mt-4 font-serif text-[clamp(2rem,4vw,2.5rem)] text-[#231F20]">
           Our Expertise
         </h2>
@@ -109,7 +110,7 @@ export default function OurExpertise() {
         <div className="flex flex-col justify-center sm:gap-20 gap-16">
           {[
             ["30 Years", "Business Acumen"],
-            ["100+ Years", "Combined Experience"],
+            ["500+ Projects", "Combined Experience"],
             ["2 Generations", "Business Excellence"],
           ].map(([title, subtitle]) => (
             <div key={title} className="flex items-center gap-6">

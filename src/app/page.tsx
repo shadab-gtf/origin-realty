@@ -21,13 +21,13 @@ export default function Home() {
      <Header/>
      <Hero/>
      <About/>
-     <BreathingSpaces/>
+     <LiveParallaxBackground/>
+     {/* <BreathingSpaces/> */}
      {/* <VideoSection/> */}
      <ScrollVideoCanvas/>
      <Vision/>
-     <Purpose/>
+     {/* <Purpose/> */}
      {/* <ProjectGallery/> */}
-     <LiveParallaxBackground/>
      <OurExpertise/>
      <OurValues/>
      <Integrity/>

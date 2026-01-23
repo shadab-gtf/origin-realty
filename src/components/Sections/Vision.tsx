@@ -138,10 +138,11 @@ export default function Vision() {
           absolute inset-0
           bg-cover bg-center
           will-change-transform
+          bg-[#231F20]
         "
-        style={{
-          backgroundImage: "url('/bg/vision.png')",
-        }}
+        // style={{
+        //   backgroundImage: "url('/bg/vision.png')",
+        // }}
       />
 
       <div className="absolute inset-0 bg-[#231F20E5]/30" />

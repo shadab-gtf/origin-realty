@@ -104,8 +104,8 @@ export default function Hero() {
               className="
           block
           mb-4
-          text-xs
-          tracking-[0.25em]
+          text-sm 
+          font-bold
           uppercase
           text-white
         "

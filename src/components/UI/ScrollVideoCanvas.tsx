@@ -1,5 +1,3 @@
-// Much lighter replacement version
-
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -14,38 +12,37 @@ export default function ScrollVideo() {
 
   useEffect(() => {
     const video = videoRef.current
-    if (!video || !sectionRef.current) return
-    video.preload = 'auto' 
+    const section = sectionRef.current
+    if (!video || !section) return
+
     video.muted = true
     video.playsInline = true
+    video.preload = 'auto'
 
-    let reqId: number | null = null
-
-    const updateFrame = () => {
-     
-      reqId = null
+    const onLoaded = () => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${video.duration * 900}px`,
+        scrub: 0.8,
+        pin: true,
+        pinType: 'fixed', // 🔥 ensures desktop-like pin
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: self => {
+          video.currentTime = gsap.utils.clamp(
+            0,
+            video.duration,
+            self.progress * video.duration
+          )
+        },
+      })
     }
 
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: 'top top',
-      end: `+=${1390 * 12}px`, 
-      scrub: 1.2, 
-      pin: true,
-      anticipatePin: 1,
-      onUpdate: (self) => {
-        const targetTime = self.progress * video.duration
-
-        if (Math.abs(video.currentTime - targetTime) > 0.04) {
-          video.currentTime = targetTime
-        }
-
-        if (!reqId) reqId = requestAnimationFrame(updateFrame)
-      },
-    })
+    video.addEventListener('loadedmetadata', onLoaded)
 
     return () => {
-      if (reqId) cancelAnimationFrame(reqId)
+      video.removeEventListener('loadedmetadata', onLoaded)
       ScrollTrigger.getAll().forEach(t => t.kill())
     }
   }, [])
@@ -53,12 +50,25 @@ export default function ScrollVideo() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full  h-screen bg-black overflow-hidden"
+      className="
+        relative
+        w-full
+        h-[100svh]
+        bg-black
+        overflow-hidden
+      "
     >
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-contain"
-        src="/Origin.mp4"   
+        className="
+          absolute
+          inset-0
+          w-full
+          h-full
+          object-cover
+          will-change-transform
+        "
+        src="/Origin.mp4"
         playsInline
         muted
         preload="auto"

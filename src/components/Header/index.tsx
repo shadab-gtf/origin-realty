@@ -74,11 +74,12 @@ export default function Header() {
           <Link href="/" className="flex items-center">
             <Image
               src="/or.png"
-              alt="Logo"
+              alt="Company logo"
               width={300}
               height={50}
-              priority
+              sizes="(max-width: 768px) 140px, 180px"
               className="object-contain h-10 w-auto"
+              priority
             />
           </Link>
 

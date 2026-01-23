@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "@/components/UI/Button";
-import Image from "next/image";
 import FooterHeader from "../UI/FooterHeader";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -63,15 +62,38 @@ export default function Footer() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
-          {["Name", "Email", "Phone"].map((label) => (
-            <div key={label} className="relative">
-              <label className="text-xs uppercase text-white/70">{label}</label>
-              <input
-                type="text"
-                className="w-full bg-transparent border-b border-white/30 py-2 mt-2 outline-none text-white placeholder:text-white/40"
-              />
-            </div>
-          ))}
+          {[
+            { label: "Name", type: "text" },
+            { label: "Email", type: "email" },
+            { label: "Phone", type: "tel" },
+          ].map(({ label, type }) => {
+            const id = label.toLowerCase();
+
+            return (
+              <div key={label} className="relative">
+                <label htmlFor={id} className="text-xs uppercase text-white/70">
+                  {label}
+                </label>
+
+                <input
+                  id={id}
+                  name={id}
+                  type={type}
+                  className="
+            w-full
+            bg-transparent
+            border-b
+            border-white/30
+            py-2
+            mt-2
+            outline-none
+            text-white
+            placeholder:text-white/40
+          "
+                />
+              </div>
+            );
+          })}
         </div>
 
         <div className="flex justify-center mb-24">
@@ -86,7 +108,7 @@ export default function Footer() {
 
         <div className="w-full h-px bg-white/15 mb-20" />
 
-       <FooterHeader/>
+        <FooterHeader />
         <div className="relative">
           <div
             className="absolute inset-0 bg-center bg-contain  "
@@ -137,9 +159,10 @@ export default function Footer() {
 function FooterColumn({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h4 className="text-[#CEB58D] uppercase tracking-wide mb-4 text-xl">
+      <h3 className="text-[#CEB58D] uppercase tracking-wide mb-4 text-xl">
         {title}
-      </h4>
+      </h3>
+
       <ul className="space-y-3">
         {items.map((item) => (
           <li

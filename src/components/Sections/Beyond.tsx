@@ -102,7 +102,7 @@ export default function Beyond() {
       ref={sectionRef}
       className="relative overflow-hidden bg-[#f7f4ef] py-28 md:py-36"
     >
-      <div ref={bgRef} className="absolute inset-0 scale-110">
+      {/* <div ref={bgRef} className="absolute inset-0 scale-110">
         <Image
           src="/bg/beyond-bg.png"
           alt=""
@@ -111,7 +111,7 @@ export default function Beyond() {
           className="object-cover "
         />
         <div className="absolute inset-0 " />
-      </div>
+      </div> */}
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
         <span className="mb-4 inline-block text-sm tracking-normal font-bold text-[#CEB58D]">
