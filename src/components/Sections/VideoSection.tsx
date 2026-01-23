@@ -24,9 +24,11 @@ export default function VideoSection() {
         (context) => {
           const { desktop } = context.conditions as { desktop: boolean };
 
-          const startSize = desktop ? 300 : 120;
-          const endSize = desktop ? 600 : window.innerWidth * 0.92;
+          const startSize = desktop ? 320 : 160;
+          const endWidth = desktop ? 900 : window.innerWidth * 0.94;
+          const endHeight = desktop ? 520 : window.innerWidth * 0.56;
 
+          /* MAIN PINNED ANIMATION */
           gsap.fromTo(
             videoWrapRef.current,
             {
@@ -35,30 +37,34 @@ export default function VideoSection() {
               borderRadius: 24,
             },
             {
-              width: endSize,
-              height: endSize,
+              width: endWidth,
+              height: endHeight,
               borderRadius: 0,
               ease: "none",
               scrollTrigger: {
                 trigger: sectionRef.current,
-                start: "top center",
-                end: "top top",
-                scrub: 1.6,
+                start: "top top",
+                end: "+=120%",
+                scrub: 1.2,
+                pin: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
               },
             }
           );
 
+          /* SCROLL VELOCITY SCALE (SUBTLE) */
           ScrollTrigger.create({
             trigger: sectionRef.current,
-            start: "top center",
-            end: "top top",
+            start: "top top",
+            end: "+=120%",
             scrub: true,
             onUpdate: (self) => {
               const velocity = self.getVelocity();
 
               gsap.to(videoWrapRef.current, {
-                scale: 1 + Math.min(Math.abs(velocity) * 0.00025, 0.06),
-                duration: 0.4,
+                scale: 1 + Math.min(Math.abs(velocity) * 0.00025, 0.05),
+                duration: 0.35,
                 ease: "power3.out",
               });
             },
@@ -76,12 +82,12 @@ export default function VideoSection() {
       className="
         relative
         w-full
-        min-h-[160vh]
+        h-screen
         bg-[#0b0b0b]
         flex
-        items-start
+        items-center
         justify-center
-        pt-[30vh]
+        overflow-hidden
       "
     >
       <div
@@ -89,20 +95,16 @@ export default function VideoSection() {
         className="
           relative
           overflow-hidden
-          will-change-[width,height,transform]
           bg-black
+          will-change-[width,height,transform]
         "
-        style={{
-          width: 600,
-          height: 600,
-        }}
       >
         <video
           src="/Origin.mp4"
           autoPlay
           muted
           loop
-        //   playsInline
+          // playsInline
           className="w-full h-full object-cover"
         />
       </div>

@@ -85,15 +85,13 @@ body{
   }
 } */
 
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
 
-  /* SECTION — pin illusion */
   .live-section {
     top: 0 !important;
     height: 100vh !important;
   }
 
-  /* TEXT CONTAINER */
   .live-section h1 {
     display: flex !important;
     flex-direction: column !important;
@@ -102,14 +100,12 @@ body{
     transition: all 0.6s ease !important;
   }
 
-  /* BASE WORD STYLE */
   span[data-word] {
     position: relative !important;
     font-size: 12vw !important;
     transition: all 0.6s ease !important;
   }
 
-  /* INITIAL SCATTERED POSITIONS */
   span[data-word="designed"] {
     left: 20vw !important;
     top: 6vw !important;
@@ -125,7 +121,6 @@ body{
     top: -69vw !important;
   }
 
-  /* PINNED STATE — ONE LINE */
   .live-section.pinned h1 {
     flex-direction: row !important;
     justify-content: center !important;
@@ -139,4 +134,4 @@ body{
     font-size: 10vw !important;
   }
 
-}
+} */

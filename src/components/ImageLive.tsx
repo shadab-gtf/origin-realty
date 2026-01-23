@@ -1,166 +1,324 @@
-"use client";
+'use client'
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 export default function LiveParallaxBackground() {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const wrapper = wrapperRef.current;
-    const img = imageRef.current;
-    const text = textRef.current;
-    if (!wrapper || !img || !text) return;
+    const img = imageRef.current
+    const wrapper = wrapperRef.current
+    if (!img || !wrapper) return
 
-    const designed = text.querySelector('[data-word="designed"]') as HTMLElement;
-    const to = text.querySelector('[data-word="to"]') as HTMLElement;
-    const belong = text.querySelector('[data-word="belong"]') as HTMLElement;
-
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    const mm = gsap.matchMedia();
+    const isTouch = window.matchMedia('(pointer: coarse)').matches
 
     gsap.set(img, {
-      transformStyle: "preserve-3d",
-      transformOrigin: "center bottom",
+      transformStyle: 'preserve-3d',
+      transformOrigin: 'center bottom',
       z: 120,
-      willChange: "transform",
-      force3D: true,
-    });
+      willChange: 'transform',
+    })
 
+   
     gsap.to(img, {
       rotateX: -14,
       rotateY: 4,
       scale: 1.12,
       z: 160,
-      ease: "none",
+      ease: 'none',
       scrollTrigger: {
         trigger: wrapper,
-        start: "top bottom",
-        end: "bottom top",
+        start: 'top bottom',
+        end: 'bottom top',
         scrub: 1.4,
       },
-    });
+    })
 
+    
     gsap.to(img, {
-      y: "-=6",
-      rotateY: "+=6",
+      y: '-=6',
+      rotateY: '+=6',
       duration: 10,
       repeat: -1,
       yoyo: true,
-      ease: "sine.inOut",
-    });
+      ease: 'sine.inOut',
+    })
 
-    const moveX = gsap.quickTo(img, "x", { duration: 1.2, ease: "power3.out" });
-    const moveY = gsap.quickTo(img, "y", { duration: 1.2, ease: "power3.out" });
-    const rotX = gsap.quickTo(img, "rotateX", { duration: 1.4 });
-    const rotY = gsap.quickTo(img, "rotateY", { duration: 1.4 });
+    const moveX = gsap.quickTo(img, 'x', {
+      duration: 1.2,
+      ease: 'power3.out',
+    })
+
+    const moveY = gsap.quickTo(img, 'y', {
+      duration: 1.2,
+      ease: 'power3.out',
+    })
+
+    const rotX = gsap.quickTo(img, 'rotateX', {
+      duration: 1.4,
+      ease: 'power3.out',
+    })
+
+    const rotY = gsap.quickTo(img, 'rotateY', {
+      duration: 1.4,
+      ease: 'power3.out',
+    })
 
     const handleMouse = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 2;
-      const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      moveX(-x * 45);
-      moveY(-y * 25);
-      rotY(gsap.utils.clamp(-20, 20, -x * 22));
-      rotX(gsap.utils.clamp(-14, 14, -y * 18));
-    };
+      const x = (e.clientX / window.innerWidth - 0.5) * 2
+      const y = (e.clientY / window.innerHeight - 0.5) * 2
 
-    if (!isTouch) {
-      window.addEventListener("mousemove", handleMouse);
+      moveX(-x * 45)
+      moveY(-y * 25)
+
+      rotY(gsap.utils.clamp(-20, 20, -x * 22))
+      rotX(gsap.utils.clamp(-14, 14, -y * 18))
     }
 
-    mm.add("(max-width: 767px)", () => {
-      gsap.set([designed, to, belong], {
-        top: "50%",
-        left: "50%",
-        xPercent: -50,
-        yPercent: (i) => i * 110,
-        opacity: 1,
-      });
-    });
+    window.addEventListener('mousemove', handleMouse)
 
-    mm.add("(min-width: 768px)", () => {
-      gsap.set(wrapper, { backgroundColor: "#000" });
+    let gyroEnabled = false
 
-      gsap.set(designed, { top: "10%", left: "20%", xPercent: -50 });
-      gsap.set(to, { top: "25%", left: "50%", xPercent: -50 });
-      gsap.set(belong, { top: "40%", left: "75%", xPercent: -50 });
+    const requestPermission = async () => {
+      // iOS permission
+      // @ts-ignore
+      if (typeof DeviceOrientationEvent?.requestPermission === 'function') {
+        // @ts-ignore
+        const permission = await DeviceOrientationEvent.requestPermission()
+        gyroEnabled = permission === 'granted'
+      } else {
+        gyroEnabled = true
+      }
+    }
 
-      const tl = gsap.timeline({
-        defaults: { ease: "power3.out" },
-        scrollTrigger: {
-          trigger: wrapper,
-          start: "top+=1 top",
-          end: "+=360",
-          scrub: 1.4,
-          pin: true,
-          pinSpacing: false,
-          anticipatePin: 1,
-          fastScrollEnd: true,
-          invalidateOnRefresh: true,
-        },
-      });
+    if (isTouch) requestPermission()
 
-      tl.to([designed, to, belong], { top: "6%", force3D: true }, 0);
-      tl.to(designed, { xPercent: -16 }, 0);
-      tl.to(to, { xPercent: -60 }, 0);
-      tl.to(belong, { xPercent: -67 }, 0);
-    });
+    const handleOrientation = (e: DeviceOrientationEvent) => {
+      if (!gyroEnabled) return
+
+      const beta = gsap.utils.clamp(-30, 30, e.beta || 0)
+      const gamma = gsap.utils.clamp(-30, 30, e.gamma || 0)
+
+      gsap.to(img, {
+        rotateX: -beta * 0.35,
+        rotateY: gamma * 0.5,
+        x: gamma * 1.5,
+        y: beta * 0.6,
+        duration: 0.8,
+        ease: 'power3.out',
+      })
+    }
+
+    if (isTouch) {
+      window.addEventListener('deviceorientation', handleOrientation)
+    }
 
     return () => {
-      mm.revert();
-      window.removeEventListener("mousemove", handleMouse);
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-      gsap.killTweensOf(img);
-    };
-  }, []);
+      window.removeEventListener('mousemove', handleMouse)
+      window.removeEventListener('deviceorientation', handleOrientation)
+    }
+  }, [])
 
   return (
     <section
       ref={wrapperRef}
-      className="relative h-[110vh] live-section w-full overflow-hidden bg-black perspective-[2000px]"
+      className="relative h-[800px] w-full overflow-hidden perspective-[2000px]"
     >
+      {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/bg/live.png')" }}
       />
+
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/35" />
-      <h1
-        ref={textRef}
-        className="absolute inset-0 z-10 text-white font-light pointer-events-none select-none"
-      >
-        <span
-          data-word="designed"
-          className="absolute text-[clamp(8rem,6vw,27rem)]"
-        >
-          Design
-        </span>
-        <span data-word="to" className="absolute text-[clamp(8rem,6vw,27rem)]">
-          To
-        </span>
-        <span
-          data-word="belong"
-          className="absolute text-[clamp(8rem,6vw,27rem)]"
-        >
-          Belong
-        </span>
+
+      {/* Back Text */}
+      <h1 className="absolute inset-0 z-0 flex items-center justify-center text-center text-[clamp(6rem,18vw,13rem)] font-light leading-none text-white select-none pointer-events-none">
+        Design to Beyond <br /> 
       </h1>
-      <div className="absolute inset-0 z-[9] blur-2xl opacity-30 bg-black scale-75 translate-y-20 rounded-full" />
+
+      {/* Depth Shadow */}
+      <div className="absolute inset-0 z-[9] blur-2xl opacity-30 bg-black rounded-full scale-75 translate-y-20" />
+
+      {/* Foreground */}
       <img
         ref={imageRef}
         src="/girl11.png"
         alt="Foreground"
-        className="absolute -bottom-8 left-1/2 z-10 w-[420px] max-w-[92vw] -translate-x-1/2 object-bottom transform-gpu"
-        draggable={false}
-        loading="lazy"
+        className="absolute -bottom-8 left-1/2 z-10 w-[500px] max-w-[95vw] -translate-x-1/2 object-bottom transform-gpu"
       />
     </section>
-  );
+  )
 }
+// "use client";
+
+// import { useEffect, useRef } from "react";
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// export default function LiveParallaxBackground() {
+//   const wrapperRef = useRef<HTMLDivElement>(null);
+//   const imageRef = useRef<HTMLImageElement>(null);
+//   const textRef = useRef<HTMLHeadingElement>(null);
+
+//   useEffect(() => {
+//     const wrapper = wrapperRef.current;
+//     const img = imageRef.current;
+//     const text = textRef.current;
+//     if (!wrapper || !img || !text) return;
+
+//     const designed = text.querySelector('[data-word="designed"]') as HTMLElement;
+//     const to = text.querySelector('[data-word="to"]') as HTMLElement;
+//     const belong = text.querySelector('[data-word="belong"]') as HTMLElement;
+
+//     const isTouch = window.matchMedia("(pointer: coarse)").matches;
+//     const mm = gsap.matchMedia();
+
+//     gsap.set(img, {
+//       transformStyle: "preserve-3d",
+//       transformOrigin: "center bottom",
+//       z: 120,
+//       willChange: "transform",
+//       force3D: true,
+//     });
+
+//     gsap.to(img, {
+//       rotateX: -14,
+//       rotateY: 4,
+//       scale: 1.12,
+//       z: 160,
+//       ease: "none",
+//       scrollTrigger: {
+//         trigger: wrapper,
+//         start: "top bottom",
+//         end: "bottom top",
+//         scrub: 1.4,
+//       },
+//     });
+
+//     gsap.to(img, {
+//       y: "-=6",
+//       rotateY: "+=6",
+//       duration: 10,
+//       repeat: -1,
+//       yoyo: true,
+//       ease: "sine.inOut",
+//     });
+
+//     const moveX = gsap.quickTo(img, "x", { duration: 1.2, ease: "power3.out" });
+//     const moveY = gsap.quickTo(img, "y", { duration: 1.2, ease: "power3.out" });
+//     const rotX = gsap.quickTo(img, "rotateX", { duration: 1.4 });
+//     const rotY = gsap.quickTo(img, "rotateY", { duration: 1.4 });
+
+//     const handleMouse = (e: MouseEvent) => {
+//       const x = (e.clientX / window.innerWidth - 0.5) * 2;
+//       const y = (e.clientY / window.innerHeight - 0.5) * 2;
+//       moveX(-x * 45);
+//       moveY(-y * 25);
+//       rotY(gsap.utils.clamp(-20, 20, -x * 22));
+//       rotX(gsap.utils.clamp(-14, 14, -y * 18));
+//     };
+
+//     if (!isTouch) {
+//       window.addEventListener("mousemove", handleMouse);
+//     }
+
+//     mm.add("(max-width: 767px)", () => {
+//       gsap.set([designed, to, belong], {
+//         top: "50%",
+//         left: "50%",
+//         xPercent: -50,
+//         yPercent: (i) => i * 110,
+//         opacity: 1,
+//       });
+//     });
+
+//     mm.add("(min-width: 768px)", () => {
+//       gsap.set(wrapper, { backgroundColor: "#000" });
+
+//       gsap.set(designed, { top: "10%", left: "20%", xPercent: -50 });
+//       gsap.set(to, { top: "25%", left: "50%", xPercent: -50 });
+//       gsap.set(belong, { top: "40%", left: "75%", xPercent: -50 });
+
+//       const tl = gsap.timeline({
+//         defaults: { ease: "power3.out" },
+//         scrollTrigger: {
+//           trigger: wrapper,
+//           start: "top+=1 top",
+//           end: "+=360",
+//           scrub: 1.4,
+//           pin: true,
+//           pinSpacing: false,
+//           anticipatePin: 1,
+//           fastScrollEnd: true,
+//           invalidateOnRefresh: true,
+//         },
+//       });
+
+//       tl.to([designed, to, belong], { top: "6%", force3D: true }, 0);
+//       tl.to(designed, { xPercent: -16 }, 0);
+//       tl.to(to, { xPercent: -60 }, 0);
+//       tl.to(belong, { xPercent: -67 }, 0);
+//     });
+
+//     return () => {
+//       mm.revert();
+//       window.removeEventListener("mousemove", handleMouse);
+//       ScrollTrigger.getAll().forEach((st) => st.kill());
+//       gsap.killTweensOf(img);
+//     };
+//   }, []);
+
+//   return (
+//     <section
+//       ref={wrapperRef}
+//       className="relative h-[110vh] live-section w-full overflow-hidden bg-black perspective-[2000px]"
+//     >
+//       <div
+//         className="absolute inset-0 bg-cover bg-center"
+//         style={{ backgroundImage: "url('/bg/live.png')" }}
+//       />
+//       <div className="absolute inset-0 bg-black/35" />
+//       <h1
+//         ref={textRef}
+//         className="absolute inset-0 z-10 text-white font-light pointer-events-none select-none"
+//       >
+//         <span
+//           data-word="designed"
+//           className="absolute text-[clamp(8rem,6vw,27rem)]"
+//         >
+//           Design
+//         </span>
+//         <span data-word="to" className="absolute text-[clamp(8rem,6vw,27rem)]">
+//           To
+//         </span>
+//         <span
+//           data-word="belong"
+//           className="absolute text-[clamp(8rem,6vw,27rem)]"
+//         >
+//           Belong
+//         </span>
+//       </h1>
+//       <div className="absolute inset-0 z-[9] blur-2xl opacity-30 bg-black scale-75 translate-y-20 rounded-full" />
+//       <img
+//         ref={imageRef}
+//         src="/girl11.png"
+//         alt="Foreground"
+//         className="absolute -bottom-8 left-1/2 z-10 w-[420px] max-w-[92vw] -translate-x-1/2 object-bottom transform-gpu"
+//         draggable={false}
+//         loading="lazy"
+//       />
+//     </section>
+//   );
+// }
 
 
 // 'use client'
