@@ -142,7 +142,7 @@ export default function Hero() {
           will-change-transform
         "
             >
-              Built Around Life
+              Design to Belong
             </motion.h1>
 
             {/* Description */}
@@ -175,8 +175,7 @@ export default function Hero() {
           will-change-transform
         "
             >
-              Redefine Real Estate with our expertise to build spaces that
-              transform lives.
+              Where every creation is more than just design; it’s about building connections, expressing individuality, and making everyone feel at home.
             </motion.p>
           </div>
 
