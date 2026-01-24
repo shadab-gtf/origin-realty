@@ -29,7 +29,47 @@ const finalClipPaths = [
   "polygon(33.33% 66.66%, 66.66% 66.66%, 66.66% 100%, 33.33% 100%)",
   "polygon(66.66% 66.66%, 100% 66.66%, 100% 100%, 66.66% 100%)",
 ];
+const stats = [
+  { value: 30, suffix: " Years", label: "Business Acumen" },
+  { value: 500, suffix: "+ Projects", label: "Combined Experience" },
+  { value: 2, suffix: " Generations", label: "Business Excellence" },
+];
+function IOSCounter({
+  value,
+  suffix = "",
+}: {
+  value: number;
+  suffix?: string;
+}) {
+  const numberRef = useRef<HTMLSpanElement>(null);
 
+  useEffect(() => {
+    if (!numberRef.current) return;
+
+    const obj = { val: 0 };
+
+    gsap.to(obj, {
+      val: value,
+      duration: 1.4,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: numberRef.current,
+        start: "top 80%",
+        once: true,
+      },
+      onUpdate: () => {
+        numberRef.current!.textContent = Math.floor(obj.val).toString();
+      },
+    });
+  }, [value]);
+
+  return (
+    <h3 className="font-serif text-3xl text-[#231F20] tabular-nums">
+      <span ref={numberRef}>0</span>
+      {suffix}
+    </h3>
+  );
+}
 export default function OurExpertise() {
   const sectionRef = useRef<HTMLElement>(null);
   const visualWrapRef = useRef<HTMLDivElement>(null);
@@ -108,7 +148,7 @@ export default function OurExpertise() {
       <div className="mx-auto mt-20 grid max-w-[1082px]  grid-col-2 sm:grid-cols-[1fr_560px] gap-20 sm:gap-0">
         {/* STATS */}
         <div className="flex flex-col justify-center sm:gap-20 gap-16">
-          {[
+          {/* {[
             ["30 Years", "Business Acumen"],
             ["500+ Projects", "Combined Experience"],
             ["2 Generations", "Business Excellence"],
@@ -118,9 +158,23 @@ export default function OurExpertise() {
                 <h3 className="font-serif text-3xl text-[#231F20]">{title}</h3>
                 <p className="text-sm text-[#231F20]">{subtitle}</p>
               </div>
-
-              {/* LINE TOUCHING IMAGE */}
               <span className="stat-line sm:block hidden h-px flex-1 bg-[#CEB58D]" />
+            </div>
+          ))} */}
+
+           {stats.map((stat) => (
+            <div key={stat.label} className="flex items-center gap-6">
+              <div className="min-w-[280px]">
+                <IOSCounter
+                  value={stat.value}
+                  suffix={stat.suffix}
+                />
+                <p className="text-sm text-[#231F20]">
+                  {stat.label}
+                </p>
+              </div>
+
+              <span className="stat-line hidden sm:block h-px flex-1 bg-[#CEB58D]" />
             </div>
           ))}
         </div>

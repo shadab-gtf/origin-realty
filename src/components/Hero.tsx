@@ -64,8 +64,7 @@ export default function Hero() {
           absolute inset-0
           w-full h-full
           object-cover
-          will-change-transform
-        "
+          will-change-transform"
         src="/hero.mp4"
         autoPlay
         muted
