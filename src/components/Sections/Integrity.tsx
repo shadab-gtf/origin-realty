@@ -83,7 +83,7 @@ export default function Integrity() {
         ref={bgRef}
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('/bg/integrity2.png')",
+          backgroundImage: "url('/bg/integrity2.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

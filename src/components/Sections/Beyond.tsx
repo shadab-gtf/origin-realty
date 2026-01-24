@@ -114,7 +114,7 @@ export default function Beyond() {
       </div> */}
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
-        <span className="mb-4 inline-block text-sm tracking-normal font-bold text-[#CEB58D]">
+        <span className="mb-4 inline-block text-sm tracking-normal font-bold text-[#7b6b51]">
           BEYOND BRAND ASSOCIATIONS
         </span>
 

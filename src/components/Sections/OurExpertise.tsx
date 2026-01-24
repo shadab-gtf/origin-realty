@@ -90,7 +90,7 @@ export default function OurExpertise() {
     <section ref={sectionRef} className="bg-white px-6 py-24">
       {/* HEADER */}
       <div className="mx-auto max-w-[1082px] w-full text-center">
-        <p className="text-sm font-bold text-[#9E7C3A]">THE ORIGEN ADVANTAGE</p>
+        <p className="text-sm font-bold text-[#F1D8A8]">THE ORIGEN ADVANTAGE</p>
 
         <h2 className="mt-4 font-serif text-[clamp(2rem,4vw,2.5rem)] text-[#231F20]">
           Our Expertise
@@ -135,7 +135,7 @@ export default function OurExpertise() {
               key={i}
               className="mask absolute inset-0"
               style={{
-                backgroundImage: "url(/about.png)",
+                backgroundImage: "url(/about.webp)",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 zIndex: 10,

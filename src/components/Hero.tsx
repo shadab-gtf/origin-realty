@@ -59,6 +59,7 @@ export default function Hero() {
       {/* video background  */}
       <video
         ref={videoRef}
+        aria-hidden="true"
         className="
           absolute inset-0
           w-full h-full
@@ -175,7 +176,9 @@ export default function Hero() {
           will-change-transform
         "
             >
-              Where every creation is more than just design; it’s about building connections, expressing individuality, and making everyone feel at home.
+              Where every creation is more than just design; it’s about building
+              connections, expressing individuality, and making everyone feel at
+              home.
             </motion.p>
           </div>
 

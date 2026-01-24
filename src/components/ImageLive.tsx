@@ -132,7 +132,7 @@ export default function LiveParallaxBackground() {
       {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/bg/live.png')" }}
+        style={{ backgroundImage: "url('/bg/live.webp')" }}
       />
 
       {/* Overlay */}
@@ -149,7 +149,7 @@ export default function LiveParallaxBackground() {
       {/* Foreground */}
       <img
         ref={imageRef}
-        src="/girl11.png"
+        src="/girl11.webp"
         alt="Foreground"
         className="absolute -bottom-8 left-1/2 z-10 w-[500px] max-w-[95vw] -translate-x-1/2 object-bottom transform-gpu"
       />

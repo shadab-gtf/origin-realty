@@ -154,7 +154,7 @@ export default function OurValues() {
           {/* Eyebrow */}
           <p className="lux-text mb-4 text-xs text-[#9E7C3A]">
             A PROMISE OF QUALITY
-          </p>  
+          </p>
 
           {/* Title */}
           <h2 className="lux-text font-serif text-[clamp(1.3rem,4vw,3rem)] leading-tight text-[#231F20]">
@@ -182,7 +182,7 @@ export default function OurValues() {
                 src="/shake2.png"
                 alt="Handshake divider"
                 fill
-                sizes="700px"
+                sizes="(max-width: 768px) 180px, 280px"
                 className="object-contain"
                 priority
               />
