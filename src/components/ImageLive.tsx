@@ -140,7 +140,7 @@ export default function LiveParallaxBackground() {
 
       {/* Back Text */}
       <h1 className="absolute inset-0 z-0 flex items-center justify-center text-center text-[clamp(6rem,18vw,13rem)] font-light leading-none text-white select-none pointer-events-none">
-        Design to Beyond <br /> 
+        Design to Belong <br /> 
       </h1>
 
       {/* Depth Shadow */}

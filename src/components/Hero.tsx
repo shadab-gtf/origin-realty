@@ -17,7 +17,7 @@ export default function Hero() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.to(videoRef.current, {
-        y: "-12%",
+        y: "-2%",
         scale: 1.12,
         ease: "none",
         scrollTrigger: {

@@ -16,10 +16,10 @@ export default function Integrity() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         bgRef.current,
-        { y: 0, scale: 1.1 },
+        { y: 0, scale: 1.25 },
         {
-          y: -120,
-          scale: 1,
+          y: -12,
+          scale: 1.1,
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -77,7 +77,7 @@ export default function Integrity() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[550px] w-full overflow-hidden"
+      className="relative h-[550px] w-full overflow-hidden "
     >
       <div
         ref={bgRef}
