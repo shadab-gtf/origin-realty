@@ -1,4 +1,4 @@
-import Hero from "@/components/Hero";
+import Hero from "@/components/hero/Hero";
 import Header from '@/components/Header/index'
 import ProjectGallery from "@/components/ProjectGallery";
 import LiveParallaxBackground from "@/components/ImageLive";

@@ -9,7 +9,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #ffffff; 
+    --color-bg: #ffffff;
     --color-fg: #ededed;
     --color-muted: #9ca3af;
     --color-border: #262626;
@@ -41,13 +41,18 @@
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-ivy), Georgia, serif;
 }
 .prespective-\[1200px\] {
   perspective: 1200px;
 }
-body{
+body {
   overflow-x: hidden;
 }
 .line-clamp-2 {
@@ -58,12 +63,18 @@ body{
 }
 
 @media screen and (max-width: 500px) {
-  .lux-text{
+  .lux-text {
     opacity: 1;
   }
-
 }
 
+/* Design tokens MUST come AFTER base */
+@theme {
+  --font-serif-luxury: "Cammron", serif;
+}
+.live-text{
+  font-family: var(--font-ivy) !important;
+}
 /* @media (max-width: 991px) {
   span[data-word="designed"] {
     position: relative;
