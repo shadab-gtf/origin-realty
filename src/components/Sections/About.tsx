@@ -23,7 +23,7 @@ export default function About() {
         {
           opacity: 0,
           y: 40,
-          filter: "blur(6px)",
+          filter: "blur(0px)",
         },
         {
           opacity: 1,
@@ -46,7 +46,7 @@ export default function About() {
         })
         .to(bgWrapperRef.current, {
           rotation: 360,
-          duration: 80,
+          duration: 10,
         })
         .to(
           bgWrapperRef.current,
@@ -55,7 +55,7 @@ export default function About() {
             duration: 6,
             ease: "sine.inOut",
             yoyo: true,
-            repeat: -1,
+            repeat: 1
           },
           0,
         );

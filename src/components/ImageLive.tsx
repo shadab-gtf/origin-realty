@@ -135,64 +135,72 @@ export default function LiveParallaxBackground() {
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/35" />
-
-      {/* Back Text */}
-      <div className="absolute inset-0 z-0 pointer-events-none select-none">
-        {/* DESIGN */}
-        <motion.span
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-          className="
-  absolute top-[7%] left-[7%] live-text
+      <div className="w-full max-w-[1440px] mx-auto">
+        {/* Back Text */}
+        <h1 className="absolute inset-0 z-0 top-[4%] flex items-start justify-center text-center md:hidden text-[20vw] font-light leading-none text-white select-none pointer-events-none">
+          {" "}
+          Design <br /> to   Belong <br />{" "}
+        </h1>
+        <div className="absolute inset-0 z-0 pointer-events-none md:block hidden select-none">
+          {/* DESIGN */}
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+            className="
+  absolute top-[12%] left-[7%] live-text
   font-normal uppercase text-white text-center
   tracking-[0.005em]
   leading-[1]
-  text-[clamp(4rem,14vw,9.2rem)]
+  text-[clamp(4rem,14vw,3.2rem)]
+  md:text-[clamp(4rem,14vw,9.2rem)]
 "
-        >
-          DESIGN
-        </motion.span>
+          >
+            DESIGN
+          </motion.span>
 
-        {/* TO */}
-        <motion.span
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="
-      absolute top-[38%] left-[24%] live-text
+          {/* TO */}
+          <motion.span
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="
+      absolute top-[22%] md:top-[38%] md:left-[24%] left-10 live-text
       font-light uppercase text-white leading-none
-      text-[clamp(4rem,14vw,9.2rem)]
+      text-[clamp(4rem,14vw,3.2rem)]
+      md:text-[clamp(4rem,14vw,9.2rem)]
     "
-        >
-          TO
-        </motion.span>
+          >
+            TO
+          </motion.span>
 
-        {/* BELONG */}
-        <motion.span
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="
-      absolute bottom-[10%] right-[3%] live-text
+          {/* BELONG */}
+          <motion.span
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="
+      absolute md:bottom-[10%] bottom-[71%] right-[4%] live-text
       font-light uppercase text-white leading-none text-right
-      text-[clamp(4rem,14vw,9.2rem)]
+      text-[clamp(4rem,14vw,3.2rem)]
+      md:text-[clamp(4rem,14vw,9.2rem)]
     "
-        >
-          BELONG
-        </motion.span>
+          >
+            BELONG
+          </motion.span>
+        </div>
+
+        {/* Depth Shadow */}
+        {/* <div className="absolute inset-0 z-[9] blur-2xl opacity-30 bg-black rounded-full scale-75 translate-y-20" /> */}
+
+        {/* Foreground */}
+        <img
+          ref={imageRef}
+          src="/girl11.webp"
+          alt="Foreground"
+          className="absolute -bottom-8 md:left-[45%] left-1/2 z-10 md:w-[522px] h-auto w-fit max-w-[100vw] md:max-w-[95vw] md:h-[715px] -translate-x-1/2 object-bottom transform-gpu"
+        />
       </div>
-
-      {/* Depth Shadow */}
-      {/* <div className="absolute inset-0 z-[9] blur-2xl opacity-30 bg-black rounded-full scale-75 translate-y-20" /> */}
-
-      {/* Foreground */}
-      <img
-        ref={imageRef}
-        src="/girl11.webp"
-        alt="Foreground"
-        className="absolute -bottom-8 left-[45%] z-10 w-[522px] max-w-[95vw] h-[715px] -translate-x-1/2 object-bottom transform-gpu"
-      />
     </section>
   );
 }
