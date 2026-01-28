@@ -157,17 +157,19 @@ export default function OurValues() {
           </p>
 
           {/* Title */}
-          <h2 className="lux-text font-serif text-[clamp(1.3rem,4vw,3rem)] leading-tight text-[#231F20]">
+          <h2 className="lux-text font-serif text-[clamp(1.3rem,4vw,3rem)]  leading-tight text-[#231F20]">
             Our Values
           </h2>
 
           {/* Description */}
           <p className="lux-text values-desc  mx-auto mt-6 max-w-3xl text-[clamp(0.875rem,3.5vw,1.125rem)] leading-relaxed text-[#231F20]">
-            We are creating a name synonymous with futuristic design and
-            grounded research. With a commitment to transparency and a zero-debt
-            approach, we prioritize customer attunement and sustainable growth.
-            Our values are the foundation of every structure we build, ensuring
-            that we deliver on our vision of creating a shift in the market.
+            We put our customers at the heart of every decision, building
+            meaningful connections through trust, transparency, and consistent
+            action. Guided by deep expertise, we focus on delivering lasting
+            value that goes beyond outcomes to create real impact. We embrace
+            innovation and adaptive thinking to grow in a constantly evolving
+            market. Together, these values define who we are and how we show up
+            every day.
           </p>
 
           {/* DIVIDER */}

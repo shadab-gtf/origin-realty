@@ -55,7 +55,7 @@ export default function About() {
             duration: 6,
             ease: "sine.inOut",
             yoyo: true,
-            repeat: 1
+            repeat: 1,
           },
           0,
         );
@@ -121,12 +121,12 @@ export default function About() {
         </h2>
 
         <p className="text-base sm:text-xl leading-relaxed max-w-6xl text-[#231F20]">
-          We are here to reimagine what it means to build around people. To
-          shift the focus from structures to stories, from spaces to souls, from
-          profit to purpose. For us, you are not the end user. You are the
-          starting point. Every choice we make begins with one question: Will
-          this make your life and your family's life better, healthier, and more
-          meaningful?
+          Origen Realty embodies the art of thoughtful living, crafting
+          residences where wellbeing becomes intuitive and beautifully
+          effortless. Guided by visionary design and an unwavering dedication to
+          excellence, we shape spaces that elevate the everyday into the
+          exceptional, inspiring a sense of pride and belonging across every
+          community we create.
         </p>
 
         <p className="mt-10 italic text-sm sm:text-base max-w-[804px] text-[#231F20]/70">
