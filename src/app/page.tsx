@@ -26,7 +26,8 @@ export default function Home() {
      <LiveParallaxBackground/>
      {/* <BreathingSpaces/> */}
      {/* <VideoSection/> */}
-     {/* <ScrollVideoCanvas/> this is main scroll video */}
+    {/* <ScrollVideoCanvas/> */}
+      {/* // this is main scroll video  */}
      <ScrollCanvasSequence/>
      <Vision/>
      {/* <Purpose/> */}
