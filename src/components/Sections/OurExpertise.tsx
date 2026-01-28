@@ -189,9 +189,10 @@ export default function OurExpertise() {
               key={i}
               className="mask absolute inset-0"
               style={{
-                backgroundImage: "url(/about.webp)",
+                backgroundImage: "url(/about.jpg)",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+                backgroundRepeat:"no-repeat",
                 zIndex: 10,
               }}
             />
