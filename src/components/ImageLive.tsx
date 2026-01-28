@@ -139,7 +139,7 @@ export default function LiveParallaxBackground() {
         {/* Back Text */}
         <h1 className="absolute inset-0 z-0 top-[4%] flex items-start justify-center text-center md:hidden text-[20vw] font-light leading-none text-white select-none pointer-events-none">
           {" "}
-          Design <br /> to   Belong <br />{" "}
+          Design <br /> to Belong <br />{" "}
         </h1>
         <div className="absolute inset-0 z-0 pointer-events-none md:block hidden select-none">
           {/* DESIGN */}
@@ -166,7 +166,7 @@ export default function LiveParallaxBackground() {
             transition={{ duration: 2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="
       absolute top-[22%] md:top-[38%] md:left-[24%] left-10 live-text
-      font-light uppercase text-white leading-none
+      font-normal uppercase text-white leading-none
       text-[clamp(4rem,14vw,3.2rem)]
       md:text-[clamp(4rem,14vw,9.2rem)]
     "
@@ -181,7 +181,7 @@ export default function LiveParallaxBackground() {
             transition={{ duration: 2.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="
       absolute md:bottom-[10%] bottom-[71%] right-[4%] live-text
-      font-light uppercase text-white leading-none text-right
+      font-normal uppercase text-white leading-none text-right
       text-[clamp(4rem,14vw,3.2rem)]
       md:text-[clamp(4rem,14vw,9.2rem)]
     "
