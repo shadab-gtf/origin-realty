@@ -1,5 +1,3 @@
-// Much lighter replacement version
-
 'use client'
 
 import { useEffect, useRef } from 'react'
@@ -8,44 +6,54 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function ScrollVideo() {
+const FRAME_COUNT = 311
+
+export default function ScrollVideoCanvas() {
   const sectionRef = useRef<HTMLElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const imageRef = useRef<HTMLImageElement>(null)
+
+  const images: HTMLImageElement[] = []
+  const frame = { index: 0 }
 
   useEffect(() => {
-    const video = videoRef.current
-    if (!video || !sectionRef.current) return
-    video.preload = 'auto' 
-    video.muted = true
-    video.playsInline = true
+    if (!sectionRef.current || !imageRef.current) return
 
-    let reqId: number | null = null
-
-    const updateFrame = () => {
-     
-      reqId = null
+    /* --------------------------------
+       PRELOAD FRAMES
+    -------------------------------- */
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      const img = new Image()
+      img.src = `/Origin/Origin_${String(i).padStart(5, '0')}.jpg`
+      images.push(img)
     }
 
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: 'top top',
-      end: `+=${1390 * 12}px`, 
-      scrub: 1.2, 
-      pin: true,
-      anticipatePin: 1,
-      onUpdate: (self) => {
-        const targetTime = self.progress * video.duration
-
-        if (Math.abs(video.currentTime - targetTime) > 0.04) {
-          video.currentTime = targetTime
-        }
-
-        if (!reqId) reqId = requestAnimationFrame(updateFrame)
-      },
-    })
+    /* --------------------------------
+       GSAP SCROLL CONTROL
+    -------------------------------- */
+    const ctx = gsap.context(() => {
+      gsap.to(frame, {
+        index: FRAME_COUNT - 1,
+        ease: 'none',
+        snap: 'index',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: '+=300%',
+          scrub: 0.8,
+          pin: true,
+          anticipatePin: 1,
+        },
+        onUpdate: () => {
+          const img = images[frame.index]
+          if (img && imageRef.current) {
+            imageRef.current.src = img.src
+          }
+        },
+      })
+    }, sectionRef)
 
     return () => {
-      if (reqId) cancelAnimationFrame(reqId)
+      ctx.revert()
       ScrollTrigger.getAll().forEach(t => t.kill())
     }
   }, [])
@@ -53,15 +61,15 @@ export default function ScrollVideo() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full  h-screen bg-black overflow-hidden"
+      className="relative h-screen w-full bg-black overflow-hidden"
     >
-      <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-contain"
-        src="/Origin.mp4"   
-        playsInline
-        muted
-        preload="auto"
+      <img
+        ref={imageRef}
+        src="/Origin/Origin_00000.jpg"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+        decoding="async"
+        loading="eager"
       />
     </section>
   )

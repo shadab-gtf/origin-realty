@@ -14,6 +14,7 @@ import Integrity from "@/components/Sections/Integrity";
 import OurValues from "@/components/Sections/OurValues";
 import OurExpertise from "@/components/Sections/OurExpertise";
 import VideoSection from "@/components/Sections/VideoSection";
+import ScrollCanvasSequence from "@/components/UI/ScrollCanvasSequence";
 
 
 export default function Home() {
@@ -25,7 +26,8 @@ export default function Home() {
      <LiveParallaxBackground/>
      {/* <BreathingSpaces/> */}
      {/* <VideoSection/> */}
-     <ScrollVideoCanvas/> {/*this is main scroll video */}
+     {/* <ScrollVideoCanvas/> this is main scroll video */}
+     <ScrollCanvasSequence/>
      <Vision/>
      {/* <Purpose/> */}
      {/* <ProjectGallery/> */}
