@@ -115,24 +115,23 @@ export default function Beyond() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
         <span className="mb-4 inline-block text-sm tracking-normal font-bold text-[#7b6b51]">
-         Trusted by Iconic Brands
+          Trusted by Iconic Brands
         </span>
 
         <h2
           ref={titleRef}
           className="mx-auto max-w-4xl text-[clamp(2rem,4vw,2.1rem)] capitalize font-serif leading-tight text-[#231F20]"
         >
-          Partnering with India’s most respected names
+          Collaborating with India’s Most Trusted Brands
         </h2>
 
         <p
           ref={textRef}
           className="mx-auto mt-6 max-w-4xl text-[15px] leading-relaxed text-[#231F20] md:text-base"
         >
-          Our work with India’s most influential brands has shaped a disciplined
-          design intelligence—one that balances scale, precision, and emotional
-          resonance. Every environment we create is informed by operational
-          excellence and elevated by lifestyle thinking.
+          Our partnerships with India’s leading names empower us to bring
+          cutting-edge solutions to life. Through shared values and expertise,
+          we are committed to delivering excellence in every project.
         </p>
 
         <div
@@ -163,9 +162,7 @@ export default function Beyond() {
         </div>
 
         <span className="mt-10 block text-sm italic text-neutral-500">
-        <Link href="">
-        & Many More....
-        </Link>  
+          <Link href="">& Many More....</Link>
         </span>
       </div>
     </section>
