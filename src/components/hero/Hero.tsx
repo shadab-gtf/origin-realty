@@ -114,9 +114,9 @@ export default function Hero() {
               animate="visible"
               className="mt-6 text-white text-base sm:text-lg lg:text-xl max-w-[520px] leading-relaxed font-medium"
             >
-              Where every creation is more than just design; it’s about building
-              connections, expressing individuality, and making everyone feel at
-              home.
+              Where every space is carefully crafted to foster connections and
+              enhance your living experience, creating a sense of home and
+              belonging.
             </motion.p>
           </div>
 
